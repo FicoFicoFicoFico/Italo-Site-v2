@@ -1,0 +1,8 @@
+---
+layout: base.njk
+---
+<article class="project-page">
+  <div class="project-heading"><div><a class="back" href="/">← All work</a><p class="eyebrow">{{ year }} / Selected work</p><h1>{{ title }}</h1></div><div class="project-description">{{ content | safe }}</div></div>
+  <div class="gallery">{% for image in images %}<figure><img src="{{ image | urlencode | replace('%2F', '/') }}" alt="{{ title }} — image {{ loop.index }}" loading="{% if loop.first %}eager{% else %}lazy{% endif %}" decoding="async"></figure>{% endfor %}</div>
+  <div class="project-end"><a href="/">← View all projects</a></div>
+</article>

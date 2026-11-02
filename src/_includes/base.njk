@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>{{ title or "Selected works" }} — Ítalo Carajá</title>
+  <meta name="description" content="Selected works and projects by Ítalo Carajá.">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="identity" href="/">ítalo carajá<span class="dot">.</span></a>
+    <nav aria-label="Main navigation"><a href="/" {% if page.url == '/' %}aria-current="page"{% endif %}>work</a><a href="/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>about</a></nav>
+  </header>
+  <main id="main">{{ content | safe }}</main>
+  <footer class="site-footer"><span>© {{ "2026" }} Ítalo Carajá</span><a href="#main">Back to top ↑</a></footer>
+</body>
+</html>
