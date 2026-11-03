@@ -1,0 +1,93 @@
+
+.desktop > .artwork-window {
+    position: absolute;
+    top: 45px;
+    left: 190px;
+    width: min(900px, calc(100% - 30px));
+    height: min(720px, calc(100% - 75px));
+    max-width: calc(100% - 12px);
+    max-height: calc(100% - 42px);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    z-index: 20;
+}
+
+.artwork-window[hidden] {
+    display: none !important;
+}
+
+.artwork-window .title-bar {
+    flex-shrink: 0;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+}
+
+.artwork-window .title-bar-controls {
+    flex-shrink: 0;
+}
+
+.artwork-window .artwork-frame {
+    display: block;
+    flex: 1;
+    min-height: 0;
+    width: calc(100% - 8px);
+    margin: 4px;
+    border: 2px solid;
+    border-color: #808080 #fff #fff #808080;
+    background: #fff;
+}
+
+.artwork-window .artwork-loading {
+    margin: 4px 8px;
+    font-size: 11px;
+}
+
+.desktop > .artwork-window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100% - var(--taskbar-height)) !important;
+    max-width: none;
+    max-height: none;
+}
+
+@media (max-width: 700px) {
+    .desktop > .artwork-window,
+    .desktop > .artwork-window.maximized {
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: calc(100% - var(--taskbar-height)) !important;
+        max-width: none;
+        max-height: none;
+    }
+
+    .artwork-window .title-bar {
+        min-height: 30px;
+        cursor: default;
+    }
+
+    .app-window .title-bar-controls {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+    }
+
+    .app-window .title-bar-controls button {
+        width: 32px;
+        height: 30px;
+        min-width: 32px;
+        min-height: 30px;
+        padding: 0;
+        flex-shrink: 0;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto;
+    }
+
+    .app-window .title-bar-controls button[data-action="maximize"] {
+        display: none !important;
+    }
+}
