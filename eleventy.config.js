@@ -1,11 +1,14 @@
 export default function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy({ "src/projects": "projects" });
-  eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
-  eleventyConfig.addCollection("artworks", collection =>
-    collection.getFilteredByTag("portfolio").sort((a, b) =>
-      b.data.year - a.data.year || a.data.title.localeCompare(b.data.title)
-    )
-  );
-  return { dir: { input: "src", output: "_site", includes: "_includes" },
-    markdownTemplateEngine: "njk", htmlTemplateEngine: "njk" };
+  // Only project Markdown becomes generated pages.
+  // Plain HTML is copied as-is: no template syntax is evaluated.
+  eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("src/projects/**/*.webp");
+    eleventyConfig.addPassthroughCopy("src/favicon.png");
+
+  return {
+    dir: { input: "src", output: "_site", includes: "_includes" },
+    templateFormats: ["md", "html"],
+    markdownTemplateEngine: "njk",
+    htmlTemplateEngine: false
+  };
 }

@@ -1,19 +1,79 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <title>{{ title or "Selected works" }} — Ítalo Carajá</title>
-  <meta name="description" content="Selected works and projects by Ítalo Carajá.">
-  <link rel="stylesheet" href="/assets/site.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ title }} — Ítalo Carajá</title>
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/assets/css/project-viewer.css">
+    <script src="/assets/js/project-viewer.js" defer></script>
 </head>
+
 <body>
-  <header class="site-header">
-    <a class="identity" href="/">ítalo carajá<span class="dot">.</span></a>
-    <nav aria-label="Main navigation"><a href="/" {% if page.url == '/' %}aria-current="page"{% endif %}>work</a><a href="/about/" {% if page.url == '/about/' %}aria-current="page"{% endif %}>about</a></nav>
-  </header>
-  <main id="main">{{ content | safe }}</main>
-  <footer class="site-footer"><span>© {{ "2026" }} Ítalo Carajá</span><a href="#main">Back to top ↑</a></footer>
+<main class="project-viewer">
+
+    <div class="viewer-gallery">
+
+        <div class="viewer-image-area">
+
+            {% for image in images %}
+                <figure class="viewer-slide"
+                        data-slide="{{ loop.index0 }}"
+                        {% if not loop.first %}hidden{% endif %}>
+
+                    <img
+                        src="{{ image | urlencode | replace('%2F', '/') }}"
+                        alt="{{ title }} — image {{ loop.index }}"
+                        {% if loop.first %}
+                            loading="eager"
+                        {% else %}
+                            loading="lazy"
+                        {% endif %}
+                    >
+
+                </figure>
+            {% endfor %}
+
+        </div>
+
+        <div class="viewer-controls">
+
+            <button id="previous-image"
+                    type="button"
+                    aria-label="Previous image">
+                ◀
+            </button>
+
+            <span class="viewer-counter" id="viewer-counter">
+                1 / {{ images | length }}
+            </span>
+
+            <button id="next-image"
+                    type="button"
+                    aria-label="Next image">
+                ▶
+            </button>
+
+        </div>
+
+    </div>
+
+    <article class="viewer-information">
+
+        <div class="project-heading">
+            <h1>{{ title }}</h1>
+            <span class="project-year">{{ year }}</span>
+        </div>
+
+        <div class="project-description">
+            {{ content | safe }}
+        </div>
+
+    </article>
+
+</main>
 </body>
 </html>

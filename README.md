@@ -1,33 +1,30 @@
-# Ítalo Carajá — Eleventy portfolio
+# Ítalo Portfolio — hybrid static HTML + Eleventy
 
-Rebuilt from the uploaded *exported HTML* and WebP project images (not original Astro Markdown sources).
+This version makes **only project pages from Markdown**. The homepage and About page are ordinary HTML, copied unchanged.
 
-## Run locally
-
-Requires Node.js 20.11+.
+## Run in WebStorm
 
 ```bash
 npm install
 npm run start
 ```
 
-Open the URL printed by Eleventy (normally http://localhost:8080).
+Open the local URL printed by Eleventy (usually http://localhost:8080). Run `npm run build` for the deployable `_site` folder.
 
-Production build: `npm run build`. Output: `_site/`.
+## Edit files
 
-## Edit content
+- `src/index.html` — completely plain homepage HTML; edit freely in WebStorm.
+- `src/about/index.html` — completely plain About HTML; outputs `/about/`.
+- `src/assets/site.css` — shared CSS for home, About, and projects.
+- `src/projects/*.md` — 24 project pages; frontmatter holds titles, years, WebP covers, galleries, and URLs.
+- `src/projects/20xx/**.webp` — project images, copied through unchanged.
+- `src/_includes/project.njk` — reusable layout for individual project pages.
+- `src/_includes/base.njk` — project page HTML shell only.
 
-- Each work is an editable Markdown file in `src/projects/`.
-- Frontmatter defines `title`, `year`, `slug`, `permalink`, `cover`, and `images`.
-- Image assets are under `src/projects/YYYY/...` (original files retained).
-- Portfolio grid is in `src/index.njk`; individual project layout is `src/_includes/project.njk`.
-- CSS: `src/assets/site.css`.
-- Replace placeholder biography in `src/about.njk`.
+## Important
 
-## Migration notes
+The homepage project cards are **hand-written HTML**, not regenerated from the Markdown. If you add, delete, or rename a project, update the corresponding homepage link/card in `src/index.html` yourself. Changes to Markdown still automatically regenerate individual project pages.
 
-- Existing page text was extracted from the HTML exports. Formatting was simplified to Markdown.
-- Invalid `.png` image references were mapped to provided `.webp` files where possible.
-- Project URLs use `/work/<year>-<project-folder>/`; add redirects if you need to preserve legacy URLs.
-- Original homepage, artist biography, fonts, favicon, and SEO settings were not included in the upload.
-- Design is an initial editorial layout, not intended as a final sign-off.
+Eleventy remains an npm build-time dependency, including any transitive dependencies disclosed by `npm audit`; this architecture does **not** remove those packages.
+
+The About content is a placeholder.

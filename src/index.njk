@@ -1,8 +1,0 @@
----
-layout: base.njk
-title: Selected works
-permalink: /
----
-<section class="intro"><div class="intro-left"><p class="eyebrow">Artist portfolio / 2022—2025</p><h1>Selected<br><em>works.</em></h1></div><p class="intro-copy">A selection of works in printmaking, painting, drawing, and installation.</p></section>
-<section class="index" aria-label="Projects"><div class="section-bar"><span>Work index</span><span>{{ collections.artworks | length }} projects</span></div>
-<div class="work-grid">{% for project in collections.artworks %}<a class="work-card" href="{{ project.url }}"><div class="image-frame"><img src="{{ project.data.cover | urlencode | replace('%2F', '/') }}" alt="{{ project.data.title }}" loading="{% if loop.index <= 4 %}eager{% else %}lazy{% endif %}" decoding="async"></div><div class="card-meta"><h2>{{ project.data.title }}</h2><span>{{ project.data.year }}</span></div></a>{% endfor %}</div></section>
